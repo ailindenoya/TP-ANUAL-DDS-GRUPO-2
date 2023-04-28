@@ -1,11 +1,10 @@
-
-import java.net.*;
 import java.io.*;
-
+import java.net.*;
+import java.util.Objects;
+import java.util.Scanner;
 public class validadorDePasswords {
 
-    public boolean validarRobustez(String password)
-    {
+    public boolean validarRobustez(String password) throws IOException {
         boolean esRobusta = true;
         if (password.length() >= 12 )
         {
@@ -30,24 +29,24 @@ public class validadorDePasswords {
             System.out.println("La password debe tener al menos un numero");
             esRobusta = false;
         }
-        String caracteresEspeciales = "(.*[@,#,$,%].*$)";
+        String caracteresEspeciales = "(.*[@#$%].*$)";
         if (!password.matches(caracteresEspeciales))
         {
             System.out.println("La password debe tener al menos alguno de los siguientes caracteres: @#$%");
             esRobusta = false;
         }
-        URL passComunes = new URL("https://raw.githubusercontent.com/OWASP/passfault/master/wordlists/wordlists/10k-worst-passwords.txt");
-        Scanner buscadorDePass = new Scanner(passComunes.openStream());
-        while (buscadorDePass.hasNextLine()) {
+
+            URL passComunes = new URL("https://raw.githubusercontent.com/OWASP/passfault/master/wordlists/wordlists/10k-worst-passwords.txt");
+            Scanner buscadorDePass = new Scanner(passComunes.openStream());
+            while(buscadorDePass.hasNextLine()) {
             String passEncontrada = buscadorDePass.nextLine();
-            if(passEncontrada == password) {
+            if(Objects.equals(passEncontrada, password)) {
                 System.out.println("La password es demasiado comun");
                 esRobusta = false;
             }
+            }
         return esRobusta;
+
     }
-
-
-}
 
 }
