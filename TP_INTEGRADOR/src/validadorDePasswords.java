@@ -3,32 +3,45 @@ import java.net.*;
 import java.util.Objects;
 import java.util.Scanner;
 public class validadorDePasswords {
+    private boolean esRobusta = true;
 
-    public boolean validarRobustez(String password) throws IOException {
-        boolean esRobusta = true;
+    public boolean validarLargo(String password){
         if (password.length() >= 12 )
         {
             System.out.println("La password debe tener mas de 12 caracteres");
             esRobusta = false;
         }
+        return esRobusta;
+    }
+    public boolean validarMayusculas(String password)  {
+
         String mayuscula = "(.*[A-Z].*)";
-        if (!password.matches(mayuscula))
-        {
+        if (!password.matches(mayuscula)) {
             System.out.println("La password debe tener al menos un caracter en mayuscula");
             esRobusta = false;
         }
+        return esRobusta;
+    }
+    public boolean validarMinusculas(String password)  {
+
         String minuscula = "(.*[a-z].*)";
-        if (!password.matches(minuscula))
-        {
+        if (!password.matches(minuscula)) {
             System.out.println("La password debe tener al menos un caracter en minuscula");
             esRobusta = false;
         }
+        return esRobusta;
+    }
+    public boolean validarNumeros(String password) {
+
         String numeros = "(.*[0-9].*)";
-        if (!password.matches(numeros))
-        {
+        if (!password.matches(numeros)) {
             System.out.println("La password debe tener al menos un numero");
             esRobusta = false;
         }
+        return esRobusta;
+    }
+    public boolean validarCaracteresEspeciales(String password) throws IOException {
+
         String caracteresEspeciales = "(.*[@#$%].*$)";
         if (!password.matches(caracteresEspeciales))
         {
