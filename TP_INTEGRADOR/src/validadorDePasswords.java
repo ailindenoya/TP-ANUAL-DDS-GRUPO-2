@@ -66,15 +66,12 @@ public class validadorDePasswords {
     }
 
     public boolean esRobusta (String password) throws IOException{
-        boolean passwordAVerificar = this.validarLargo(password) && this.validarMayusculas(password) && this.validarMinusculas(password) && this.validarCaracteresEspeciales(password) && this.validarNumeros(password) && this.validarQueNoEsteEntrePeores(password);
-
-            if(passwordAVerificar){
+        boolean passwordAVerificar = this.validarLargo(password) && this.validarMayusculas(password) && this.validarMinusculas(password)
+                && this.validarCaracteresEspeciales(password) && this.validarNumeros(password) && this.validarQueNoEsteEntrePeores(password);
+        if(passwordAVerificar){
             System.out.println("La password es correcta");
-            return passwordAVerificar;
         }
-        else{
-            return passwordAVerificar;
-            }
+        return passwordAVerificar;
     }
     public boolean getEsRobusta(){
         return esRobusta;
